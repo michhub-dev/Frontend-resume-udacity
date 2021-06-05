@@ -102,12 +102,12 @@ var education = {
 
 bio.display = function() {
   // Display name and role
-  // string.replace(old, new) to swap out all the placeholder text (e.g. %data%) for data from the resume javaScript objects
+  // replaces the old text from the html snippet to the new values from the object, then assign it to a variable
   var formattedName = HTMLheaderName.replace("%data%",bio["name"]);
   var formattedRole = HTMLheaderRole.replace("%data%",bio["role"]);
 
   // Display contact info
-  //selector.prepend() makes an element appear at the beginning of a selected section.
+  ///prepends the variable above to the start of the header element
   $("#header").prepend(formattedRole);
   $("#header").prepend(formattedName);
   var contacts = bio["contacts"];
@@ -118,7 +118,7 @@ bio.display = function() {
   var formattedLocation = HTMLlocation.replace("%data%",contacts["location"]);
   var formattedImage = HTMLbioPic.replace("%data%",bio["img"]);
   var formattedMessage = HTMLWelcomeMsg.replace("%data%",bio["welcomeMessage"]);
-  //selector.append() makes an element appear at the end of a selected section
+  //append the variables above to the end of the element 
   $("#topContacts").append(formattedMobile + formattedEmail + formattedGithub + formattedLocation);
   $("#header").append(formattedImage + formattedMessage);
 
@@ -146,6 +146,7 @@ work.display = function(){
     var formattedDates = HTMLworkDates.replace("%data%",j["dates"]);
     var formattedLocation = HTMLworkLocation.replace("%data%",j['location']);
     var formattedWorkDesc = HTMLworkDescription.replace("%data%",j['description']);
+    //appends all the variables above to the end of the element
     $(".work-entry:last").append(formattedEmployer + formattedTitle + formattedDates + formattedLocation + formattedWorkDesc);
   }
 };
@@ -214,9 +215,9 @@ education.display();
 
 // Shows  the x and y cordinate on the console whenever there is a click on any part of the page
 
-$(document).click(function(loc){
+/*$(document).click(function(loc){
   logClicks(loc.pageX,loc.pageY);
-});
+});*/
 
 
 // Add map!
