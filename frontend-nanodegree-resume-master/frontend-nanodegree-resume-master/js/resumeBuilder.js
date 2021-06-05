@@ -1,3 +1,4 @@
+//Build four JavaScript objects, each one representing a different resume section
 var work = {
   "jobs": [
     {
@@ -101,26 +102,28 @@ var education = {
 
 bio.display = function() {
   // Display name and role
-
+  // string.replace(old, new) to swap out all the placeholder text (e.g. %data%) for data from the resume javaScript objects
   var formattedName = HTMLheaderName.replace("%data%",bio["name"]);
   var formattedRole = HTMLheaderRole.replace("%data%",bio["role"]);
 
   // Display contact info
-
+  //selector.prepend() makes an element appear at the beginning of a selected section.
   $("#header").prepend(formattedRole);
   $("#header").prepend(formattedName);
   var contacts = bio["contacts"];
+  // string.replace(old, new) to swap out all the placeholder text (e.g. %data%) for data from the resume javaScript objects and store in a variable
   var formattedMobile = HTMLmobile.replace("%data%",contacts["mobile"]);
   var formattedEmail = HTMLemail.replace("%data%",contacts["email"]);
   var formattedGithub = HTMLgithub.replace("%data%",contacts["github"]);
   var formattedLocation = HTMLlocation.replace("%data%",contacts["location"]);
   var formattedImage = HTMLbioPic.replace("%data%",bio["img"]);
   var formattedMessage = HTMLWelcomeMsg.replace("%data%",bio["welcomeMessage"]);
+  //selector.append() makes an element appear at the end of a selected section
   $("#topContacts").append(formattedMobile + formattedEmail + formattedGithub + formattedLocation);
   $("#header").append(formattedImage + formattedMessage);
 
   // Display skills
-
+ // appends the element from helper.js to the header element. Loops through each of the skills and replaces the old text to the object created then appends the created variable to the html element
   if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
     var formattedSkill = "";
@@ -137,6 +140,7 @@ work.display = function(){
   for (var job in work.jobs) {
     $("#workExperience").append(HTMLworkStart);
     var j = work.jobs[job];
+    // string.replace(old, new) to swap out all the placeholder text (e.g. %data%) for data from the resume javaScript objects and store in a variable
     var formattedEmployer = HTMLworkEmployer.replace("%data%",j["employer"]);
     var formattedTitle = HTMLworkTitle.replace("%data%",j["title"]);
     var formattedDates = HTMLworkDates.replace("%data%",j["dates"]);
@@ -152,12 +156,13 @@ projects.display = function() {
   for (var project in projects["projects"]) {
     $("#projects").append(HTMLprojectStart);
     var proj = projects["projects"][project];
+    // string.replace(old, new) to swap out all the placeholder text (e.g. %data%) for data from the resume javaScript objects and store in a variable
     var formattedTitle = HTMLprojectTitle.replace("%data%", proj["title"]);
     var formattedDates = HTMLprojectDates.replace("%data%", proj["dates"]);
     var formattedDesc = HTMLprojectDescription.replace("%data%", proj["description"]);
     var formattedImages = "";
     if (proj["images"].length > 0){
-      for (image in proj["images"]) {
+      for (image in proj["images"]) {//image variable is used to loop through the array
         formattedImages += HTMLprojectImage.replace("%data%", proj["images"][image]);
       };
     }
@@ -172,6 +177,7 @@ education.display = function() {
   for (school in education["schools"]){
     $("#education").append(HTMLschoolStart);
     var sch = education["schools"][school];
+    // string.replace(old, new) to swap out all the placeholder text for data from the resume javaScript objects and store in a variable
     var formattedName = HTMLschoolName.replace("%data%", sch["name"]);
     var formattedDegree = HTMLschoolDegree.replace("%data%", sch["degree"]);
     var formattedDates = HTMLschoolDates.replace("%data%", sch["dates"]);
@@ -189,11 +195,12 @@ education.display = function() {
     for (course in education["onlineCourses"]){
       $("#education").append(HTMLschoolStart);
       var mooc = education["onlineCourses"][course];
+      // string.replace(old, new) to swap out all the placeholder text (e.g. %data%) for data from the resume javaScript objects and store in a variable
       var formattedTitle = HTMLonlineTitle.replace("%data%", mooc["title"]);
       var formattedSchool = HTMLonlineSchool.replace("%data%", mooc["school"]);
-      var formattedDates = HTMLonlineDates.replace("%data%", mooc["dates"]);
+      var edformattedDates = HTMLonlineDates.replace("%data%", mooc["dates"]);
       var formattedUrl = HTMLonlineURL.replace("%data%", mooc["url"]);
-      $(".education-entry:last").append(formattedTitle + formattedSchool + formattedDates + formattedUrl);
+      $(".education-entry:last").append(formattedTitle + formattedSchool + edformattedDates + formattedUrl);
     };
   };
 };
@@ -205,24 +212,12 @@ work.display();
 projects.display();
 education.display();
 
-// Log clicks to console
+// Shows  the x and y cordinate on the console whenever there is a click on any part of the page
 
 $(document).click(function(loc){
   logClicks(loc.pageX,loc.pageY);
 });
 
-// Internationalize! 
-
-$("#main").append(internationalizeButton);
-
-var inName = function() {
-  var oldName = $("#name").text();
-  var finalName = oldName.trim().split(" ");
-  finalName[0] = finalName[0][0].toUpperCase() + finalName[0].slice(1).toLowerCase();
-  finalName[1] = finalName[1].toUpperCase();
-  finalName = finalName.join(" ");
-  return finalName;
-}
 
 // Add map!
 
