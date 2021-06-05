@@ -57,19 +57,7 @@ var googleMap = "<div id='map'></div>";
 
 
 /*
-The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
-*/
-$(document).ready(function() {
-  $('button').click(function() {
-    var iName = inName() || function(){};
-    $('#name').html(iName);  
-  });
-})
-
-
-
-/*
-The next few lines about clicks are for the Collecting Click Locations quiz in Lesson 2.
+Collecting Click Locations 
 */
 clickLocations = [];
 
@@ -110,7 +98,7 @@ function initializeMap() {
 
   // This next line makes `map` a new Google Map JavaScript Object and attaches it to
   // <div id="map">, which is appended as part of an exercise late in the course.
-  map = new google.maps.Map(document.querySelector('#map'), mapOptions);
+  //map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
 
   /*
@@ -200,7 +188,7 @@ function initializeMap() {
 
     // creates a Google place search service object. PlacesService does the work of
     // actually searching for location data.
-    var service = new google.maps.places.PlacesService(map);
+    //var service = new google.maps.places.PlacesService(map);
     
     // Iterates through the array of locations, creates a search object for each location
     for (place in locations) {
@@ -212,12 +200,12 @@ function initializeMap() {
 
       // Actually searches the Google Maps API for location data and runs the callback 
       // function with the search results after each search.
-      service.textSearch(request, callback);
+      //service.textSearch(request, callback);
     }
   }
 
   // Sets the boundaries of the map based on pin locations
-  window.mapBounds = new google.maps.LatLngBounds();
+  //window.mapBounds = new google.maps.LatLngBounds();
 
   // locations is an array of location strings returned from locationFinder()
   locations = locationFinder();
@@ -239,5 +227,5 @@ window.addEventListener('load', initializeMap);
 //and adjust map bounds
 window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
- map.fitBounds(mapBounds);
+// map.fitBounds(mapBounds);
 });
