@@ -72,6 +72,10 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
+  var x = loc.pageX;
+  var y = loc.pageY;
+
+  logClicks(x, y);
   // your code goes here!
 });
 
@@ -165,7 +169,7 @@ function initializeMap() {
     // bounds.extend() takes in a map location object
     bounds.extend(new google.maps.LatLng(lat, lon));
     // fit the map to the new marker
-    map.fitBounds(bounds);
+    //map.fitBounds(bounds);
     // center the map
     map.setCenter(bounds.getCenter());
   }
@@ -227,5 +231,5 @@ window.addEventListener('load', initializeMap);
 //and adjust map bounds
 window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-// map.fitBounds(mapBounds);
+ map.fitBounds(mapBounds);
 });
